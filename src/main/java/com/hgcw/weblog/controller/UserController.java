@@ -1,14 +1,11 @@
 package com.hgcw.weblog.controller;
 
 
+import com.hgcw.weblog.common.lang.Result;
 import com.hgcw.weblog.entity.User;
 import com.hgcw.weblog.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,11 +23,9 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/selcet")
-    public List<User> getId() {
-        List<User> users = userMapper.selectList(null);
-        return users;
-
-
-    }
+  @GetMapping("index")
+    public Result index(){
+      User user = userMapper.selectById(1L);
+      return Result.succ(user);
+  }
 }
